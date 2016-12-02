@@ -226,3 +226,48 @@ Podemos observar todos los mensajes que tenemos registrados en nuestra base de d
 
 ![img](https://i.sli.mg/SVyRUg.png)
 
+
+
+## 3.- Contenedores.
+
+#### 3.2.- Creación contenedor.
+En este apartado describimos como creamos un contenedor en el cual esten contenido todo lo necesario para poder ejecutar nuestra aplicación.
+
+Como vamos a utilizar docker necesitamos decirle a docker que acciones debe realizar para poder crear un contenedor en el cual estará confinada nuestra aplicación. Para ello creamos un archivo llamado Dockerfile:
+
+```
+FROM ubuntu:latest
+
+MAINTAINER Luis Gil Guijarro <luisgguijarro9@gmail.com>
+
+
+ARG TOKEN_TELEGRAM
+ARG TOKEN_TASTEKID
+ARG POSTGRES_DB
+
+ENV TOKEN=$TOKEN_TELEGRAM
+ENV TOKEN_TASTEKID=$TOKEN_TASTEKID
+ENV POSTGRES_DATABASE=$POSTGRES_DB
+
+
+RUN apt-get update
+RUN apt-get install -y git ruby ruby-dev build-essential libpq-dev
+
+RUN gem install bundler
+
+RUN git clone https://github.com/LuisGi93/proyectoIV2016-2017
+WORKDIR proyectoIV2016-2017
+RUN bundle install
+
+```
+
+Con los ```ARG``` definimos los datos que se van a pasar como parámetros via linea de comandos, con ```ENV``` las variables de entorno que va a usar nuestra aplicación estas variables de entorno cogen el valor de los parámetros que se le pase al docker por linea de comandos, tras esto instalamos los paquetes que necesita nuestra aplicación, clonamos el repositorio de la aplicación, instalamos dependencias y echamos a andar a el bot.
+
+Tras probar todo esto seguimos los pasos de la [documentación oficial](https://docs.docker.com/engine/getstarted/step_four/) y localmente construimos el contenedor con la orden: 
+```
+docker build -f Dockerfile -t queveobot .
+```
+
+
+#### 3.2.- Dockerhub.
+
