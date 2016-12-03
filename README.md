@@ -7,8 +7,6 @@
 
 El proposito del proyecto es desarrollar un bot que aconseje peliculas según el titulo de una pelicula. Por ahora solo admite titulos en ingles.
 
-El proyecto a desarrollar es un bot de Telegram que recomendará peliculas a un usuario que contacte con el  en función del titulo de una pelicula. Este bot tiene que ser capaz de guardar que peliculas le ha pedido el usuario para no recomendarle peliculas que ya ha visto. También se están estudiando funcionalidades adicionales tales como hacer un sistema de votación para peliculas y mostrar las peliculas más populares entre los usuarios. 
-
 Se pretende  desarrollar los siguientes servicios:
 
  -   Servicio de logs para poder almacenar todo lo que le ocurre al bot.
