@@ -4,22 +4,37 @@
 
 ### 1.- Descripción.
 
+
+El proposito del proyecto es desarrollar un bot que aconseje peliculas según el titulo de una pelicula. Por ahora solo admite titulos en ingles.
+
 El proyecto a desarrollar es un bot de Telegram que recomendará peliculas a un usuario que contacte con el  en función del titulo de una pelicula. Este bot tiene que ser capaz de guardar que peliculas le ha pedido el usuario para no recomendarle peliculas que ya ha visto. También se están estudiando funcionalidades adicionales tales como hacer un sistema de votación para peliculas y mostrar las peliculas más populares entre los usuarios. 
 
-Además se pretenden implementar los siguientes servicios:
-
+Se pretende  desarrollar los siguientes servicios:
 
  -   Servicio de logs para poder almacenar todo lo que le ocurre al bot.
- -  Servicio que monitorize el estado de todos los demás servicios y en caso de detectar fallo en alguno avise al responsable humano via email o via telegram.
- -  Primer servicio que reciba las peticiones y le pase la pelota al servicio correspondiente.
  -   Servicio de traducción de peliculas ya que ahora mismo solo reconoce peliculas en ingles.
 
-El lenguaje elegido para desarrollar el bot es ~~python~~ Ruby.
 
-###1.1.- Instalación.
+Además se puede expandir con más funcionalidades como guardar las peliculas que ha visto el usuario, votar peliculas y mostra peliculas más populares entre los usuarios. También se puede estudiar crear un sistema interno de recomendación para no depender de [Tastekid](http://www.tastekid.com).
 
-Descargar desde github el proyecto como zip e instalar bundler:
 
+
+### 2.- Instalación 
+
+#### 2.0- Prerequisitos:
+
+- Ruby >2.1
+- En distribuciones debian/ubuntu los siguientes paquetes : ruby ruby-dev build-essential libpq-dev
+- Crear bot Telegram via Godfather. 
+- Tener base de datos tipo postgres 
+- Tener cuenta en  [Tastekid](http://www.tastekid.com). 
+
+
+
+#### 2.1- Instalación a partir del código fuente:
+
+1. Clonar el repositorio.
+2.  Instalar bundler: 
 ```shell
 $ gem install bundler
 ```
@@ -30,41 +45,47 @@ descomprimir y en el directorio donde se han descomprimido los fuentes ejecutar:
 ```shell
 $ bundle install
 ```
-Es necesario definir dos variables de entorno
-TOKEN y TOKEN_TASTEKID. La primera con el token asociado a nuestro bot de telegram y el segundo token es necesario solicitarlo en la web tastekid.com
+Es necesario definir tres variables de entorno
+TOKEN, TOKEN_TASTEKID y POSTGRES_DATABASE. La primera con el token asociado a nuestro bot de telegram y el segundo token es necesario solicitarlo en la web tastekid.com y la tercera es la variable de la base de datos tipo postgres.
 
+Para ejecutar el bot:
+```shell
+$ ruby bin/run.rb
+```
 
-Actualmente el bot no se ejecuta automáticamente y por ahora solo responde cuando le mandas los comandos básicos.
+#### 2.2- Instalación a partir de imagen docker:
 
+El proyecto cuenta con una imagen tipo docker para instalarla ejecutamos la orden:
 
+```
+docker pull luisgi93/proyectoiv2016-2017
+```
+
+Tras lo cual accedemos al contenedor utilizando la orden:
+
+```
+docker run -e "TOKEN=xxx" -e "TOKEN_TASTEKID=xxx" -e "POSTGRES_DATABASE=xxx"  -i -t luisgi93/proyectoiv2016-2017 /bin/bash
+```
+- TOKEN: Token obtenido al dar de alta nuestro bot en  Telegram.
+- TOKEN_TASTEKID: Token obtenido al crearnos cuenta en tastekid y pedir acceso a su API.
+- POSTGRES_DATABASE: dirección de base de datos tipo Postgres.
 
 ## 3.- Despliegue en heroku
 
 
+Si se quiere desplegar en heroku es necesario en primer lugar descargase la linea de ordenes de heroku y después:
 
-#### 3.1- Despliegue:
+1.  Crear aplicación en heroku:
 
-En primer lugar nos descargamos la linea de comandos de heroku utilizando la orden
-
- ```
- wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
- ```
- 
- Tras lo cual procedemos a loguearnos utilizando heroku login y creamos nuestra aplicación utilizando la orden:
- 
  ```
  heroku apps:create --region eu queveobot
  ```
- 
- Una vez hecho esto creamos el fichero Procfile:
+ 2.  Crear el fichero Procfile e insertar en el:
  
  ```
 bot: ruby bin/queveo.rb
  ```
- 
-
- 
- Una vez hecho esto definimos las variables de entorno que va a utilizar nuestra aplicación una vez la subamos en heroku con el comando:
+ 3. Definir variables de entorno:
 
  
  ```
@@ -73,17 +94,13 @@ bot: ruby bin/queveo.rb
  heroku config:set POSTGRES_DATABASE=nanana
  ```
  
-Tras lo cual nos vamos en heroku.com al apartado settings de nuestra aplicación, nos vamos a la pestaña "Deploy"  marcamos como método de deploy "github", seleccionamos master.
-
-A continuación debido a que no estamos utilzando en el Procfile la tarea "web" tenemos que decirle a heroku que le asigne un dino a la tarea "bot" para ello utilizamos el siguiente comando:
+ 4. Definir en heroku deploy via github. En  "Settings" en el apartado de nuestra aplicación en heroku,  "Deploy"  "github", seleccionamos master.
+ 
+ 5. Arrancar la aplicación:
 
  ```
 heroku ps:scale bot=1
  ```
-
-Es necesario crear la base de datos que utliza el bot para ello nos vamos a heroku.com  y alli creamos una base de datos postgres 
-y copiando la url que nos indicaban en le apartado settings config vars se la asignamos a POSTGRES_DATABASE.
- 
  
  
 #### 3.2.- Uso del bot:
@@ -101,3 +118,8 @@ Ejemplo:
  /queveo mozart
  /queveo Titanic
  ```
+
+ 
+ ![img](https://i.sli.mg/YbLCeH.png)
+ 
+ 
