@@ -241,13 +241,13 @@ FROM ubuntu:latest
 MAINTAINER Luis Gil Guijarro <luisgguijarro9@gmail.com>
 
 
-ARG TOKEN_TELEGRAM
+ARG TOKEN
 ARG TOKEN_TASTEKID
-ARG POSTGRES_DB
+ARG POSTGRES_DATABASE
 
-ENV TOKEN=$TOKEN_TELEGRAM
+ENV TOKEN=$TOKEN
 ENV TOKEN_TASTEKID=$TOKEN_TASTEKID
-ENV POSTGRES_DATABASE=$POSTGRES_DB
+ENV POSTGRES_DATABASE=$POSTGRES_DATABASE
 
 
 RUN apt-get update
@@ -268,6 +268,34 @@ Tras probar todo esto seguimos los pasos de la [documentación oficial](https://
 docker build -f Dockerfile -t queveobot .
 ```
 
+Tras probar que funciona correctamente el contenedor creado lo subimos al dockerhub.
 
 #### 3.2.- Dockerhub.
 
+Una vez que nos hemos registrado en dockerhub y  hemos subido el Dockerfile al repositorio del proyecto ligamos nuestra cuenta de github a la de dockerhub y a continuación nos vamos a "Create Automated Build".
+
+![img](https://i.sli.mg/GUp1l1.png)
+<sup>Tras crear "Automated Build" para el repositorio de la asignatura.</sup>
+
+
+Realizamos un push en nuestro repositorio del proyecto para que dockerhub lo detecte y comienze a crear la imagen.
+
+![img](https://i.sli.mg/9KkNLI.png)
+<sup>Tras realizar push y imagen se construye correctamente.</sup>
+
+Tras comprobar que se ha construido correctamente la imagen docker a partir del código de nuestro proyecto nos la descargamos y comprobamos que funciona como debe.
+
+![img](https://i.sli.mg/pHqOkR.png)
+<sup>Nos descargamos la imagen a partir del repositorio de dockerhub.</sup>
+
+Tras la descarga se ejecuta la aplicación mediante la orden:
+
+```
+docker run -e "TOKEN=xxx" -e "TOKEN_TASTEKID=xxx" -e "POSTGRES_DATABASE=xxx"  -i -t luisgi93/proyectoiv2016-2017 /bin/bash
+```
+
+y una vez se nos habre el shell en el contenedor ejecutamos:
+
+```
+ruby bin/run.rb
+```
