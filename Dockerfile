@@ -20,3 +20,4 @@ RUN gem install bundler
 RUN git clone https://github.com/LuisGi93/proyectoIV2016-2017
 WORKDIR proyectoIV2016-2017
 RUN bundle install
+
