@@ -40,7 +40,7 @@ module Recomendacion
     def generar_recomendaciones(titulo)
         sugerencias= Sugerencias.new(titulo)
         puts sugerencias.to_s
-        sugerencias.generar_sugerencias
+        sugerencias.obtener_sugerencias_tastekid
         lista=sugerencias.lista_sugerencias
         return lista
     end

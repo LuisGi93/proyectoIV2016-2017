@@ -1,0 +1,19 @@
+
+
+require './lib/recomendacion/sugerencias'
+
+
+
+sugerencia=Recomendacion::Sugerencias.new('the godfather')
+#sugerencia.obtener_sugerencias_tastekid
+
+traduccion=Array.new
+traduccion << "Potter"
+traduccion << "Caladan"
+
+sugerencia.rellenar_lista_sugerencias(traduccion)
+sugerencia.lista_sugerencias.each{ |titulo|
+  puts titulo
+}
+
+
