@@ -10,6 +10,7 @@ gem 'shoulda'
 gem 'rspec'
 gem 'sequel'
 gem 'pg'
+gem 'daemons'
 
 group :test do
   gem 'rake'
