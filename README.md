@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/LuisGi93/proyectoIV2016-2017.svg?branch=master)](https://travis-ci.org/LuisGi93/proyectoIV2016-2017)
 
 [Enlace a bot](https://telegram.me/queveobot)
-
+[![Docker](http://i63.tinypic.com/2dqt74p.jpg)](https://hub.docker.com/r/luisgi93/proyectoiv2016-2017/)
 ##1.- Descripción.
 
 El fin del proyecto a desarrollar es ~~una web~~ un bot de Telegram que aconseje peliculas a un usuario que interaccione con el (él o el, objeto :?). Por tanto a traves de la interfaz de Telegram se llevará a cabo la interacción entre máquina y hombre de tal forma que ambos mutuamente comprendan que es lo que quieren de cada uno.
