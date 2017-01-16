@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/LuisGi93/proyectoIV2016-2017.svg?branch=master)](https://travis-ci.org/LuisGi93/proyectoIV2016-2017)
 
 [Enlace a bot](https://telegram.me/queveobot)
+
 [![Docker](http://i63.tinypic.com/2dqt74p.jpg)](https://hub.docker.com/r/luisgi93/proyectoiv2016-2017/)
 ##1.- Descripción.
 
