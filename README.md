@@ -26,7 +26,7 @@ Como es lógico para realizar el proyecto se utilizará el desarrollo basado en 
 Para controlar que la aplicación funciona para diferentes versiones de Ruby se utiliza RVM, actualmente se ha testeado que funciona tanto para la versión 2.3.1 de Ruby y para la 2.2.5.
 
 
-![img](https://i.sli.mg/ZdCfmm.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/ss3_zpswbqxiuhm.png)
 ### 2.2.- Construcción de la aplicación
 
 Se utiliza [Bundler](http://bundler.io/) para especificar todas las dependencias asociadas a la aplicación y poder instalar todo lo necesario de manera automática.
@@ -84,7 +84,7 @@ Se pueden ejecutar los test con el comando:
 rake test
 ```
 
-![img](https://i.sli.mg/1jXIci.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/ss4_zpsbau5liy1.png)
 ### 2.4.- Integración continua.
 
 Para comprobar que los cambios realizados en nuestra aplicación "funcionan" fuera de nuestro entorno de desarrolo y que la instalación de dependencias y la ejecución de los tests se realiza automáticamente utilizamos [Travis](https://travis-ci.org/). Para que Travis pueda "probar" nuestra aplicación escribimos en un fichero [.travis.yml](https://github.com/LuisGi93/proyectoIV2016-2017/blob/master/.travis.yml) la configuración que utiliza nuestra aplicación en el cual por ejemplo indicamos que nuestra aplicación utiliza el Lenguaje Ruby y las versiones de Ruby que utiliza nuestra aplicación. El contenido de nuestro fichero .travis.yml es el siguiente:
@@ -117,17 +117,14 @@ Cuando subimos el proyecto a Travis lo primero que hace es activar RVM, cargar l
 bundle install
 ```
 
-![img](https://i.sli.mg/OvlcRv.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/ss5_zpseddwhx5i.png)
 
 
 Tras lo cual si se ha podido instalar todo correctamente ejecuta  Rake.A continuación utiliza Rake para la ejecución de los test especificados en nuestro fichero [Rakefile](https://github.com/LuisGi93/proyectoIV2016-2017/blob/master/Rakefile)
 
-Travis por defecto cada vez que realizamos un commit a alguno de nuestros repositorios configurados:
+Travis por defecto cada vez que realizamos un commit a alguno de nuestros repositorios configurados ejecuta los tests y nos mostrará si los cambios en nuestro repositorio de github pasan los test que les hemos descrito:
 
-![img](https://i.sli.mg/X3XzbT.png)
-Ejecuta los tests y nos mostrará si los cambios en nuestro repositorio de github pasan los test que les hemos descrito:
-
-![img](https://i.sli.mg/w1n6sc.png)
+![img](hhttp://i1339.photobucket.com/albums/o720/rand9882/ss7_zpsljkfpyto.png)
 
 
 
@@ -172,14 +169,13 @@ bot: ruby bin/queveo.rb
  ```
  
  Con lo cual comprobamos posibles fallos, como por ejemplo que se nos haya olvidado declarar las variables de entorno:
- ![img](https://i.sli.mg/GZCRHJ.png)
+ ![img](http://i1339.photobucket.com/albums/o720/rand9882/botox1_zpsikayuwvl.png)
  
 
  
  Para que heroku local pueda conocer las variables de entorno hay que definirlas en un fichero .env poniendo cada token de la forma TOKEN=" " tras lo cual ya es posible probar nuestra aplicación en local antes de subirla utilizando heroku local.
  
- ![img](https://i.sli.mg/Z7sG4k.png)
- 
+
  Una vez hecho esto definimos las variables de entorno que va a utilizar nuestra aplicación una vez la subamos en heroku con el comando:
 
  
@@ -189,10 +185,10 @@ bot: ruby bin/queveo.rb
  
 Tras lo cual nos vamos en heroku.com al apartado settings de nuestra aplicación, nos vamos a la pestaña "Deploy"  marcamos como método de deploy "github", seleccionamos master y en deploy automático marcamos la casilla "wait for CI.." de tal manera que si Travis marca error no se lanze en heroku.
 
-A continuación debido a que no estamos utilzando en el Procfile la tarea "web" tenemos que decirle a heroku que le asigne un dino a la tarea "bot"
-:
+A continuación debido a que no estamos utilzando en el Procfile la tarea "web" tenemos que decirle a heroku que le asigne un dino a la tarea "bot":
+ ![img](http://i1339.photobucket.com/albums/o720/rand9882/botox3_zps3brczlrj.png)
+ 
 
-![img](https://i.sli.mg/cpvf3S.png)
 
 
  La base de datos que utiliza el bot la habiamos creado anteriormente utilizando heroku.com y copiando la url que nos indicaban en le apartado settings config vars para que la utilizara nuestro bot.
@@ -217,14 +213,14 @@ Ejemplo:
  ```
  El título tiene que estar en ingles, más adelante si da tiempo se pondrá en español. Ej:
  
- ![img](https://i.sli.mg/YbLCeH.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/botox4_zpszrnoxaci.png)
  
  
  Actualmente el bot guarda todos los mensajes que se le envian a la base de datos a modo de logs y más adelante se guardará información que le especifique el usuario como peliculas que ya ha visto para que no se muestren en las sugerencias.
 
 Podemos observar todos los mensajes que tenemos registrados en nuestra base de datos que ha recibido el bot:
 
-![img](https://i.sli.mg/SVyRUg.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/ejer90_zpsqbj8lisn.png)
 
 
 
@@ -274,18 +270,18 @@ Tras probar que funciona correctamente el contenedor creado lo subimos al docker
 
 Una vez que nos hemos registrado en dockerhub y  hemos subido el Dockerfile al repositorio del proyecto ligamos nuestra cuenta de github a la de dockerhub y a continuación nos vamos a "Create Automated Build".
 
-![img](https://i.sli.mg/GUp1l1.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/docbot23_zps5awceb7x.png)
 <sup>Tras crear "Automated Build" para el repositorio de la asignatura.</sup>
 
 
 Realizamos un push en nuestro repositorio del proyecto para que dockerhub lo detecte y comienze a crear la imagen.
 
-![img](https://i.sli.mg/9KkNLI.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/docbot123_zpssu7co4ou.png)
 <sup>Tras realizar push y imagen se construye correctamente.</sup>
 
 Tras comprobar que se ha construido correctamente la imagen docker a partir del código de nuestro proyecto nos la descargamos y comprobamos que funciona como debe.
 
-![img](https://i.sli.mg/pHqOkR.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/docbo10_zpszv5bgvqp.png)
 <sup>Nos descargamos la imagen a partir del repositorio de dockerhub.</sup>
 
 Tras la descarga se ejecuta la aplicación mediante la orden:
@@ -312,7 +308,7 @@ pip install awscli
 
 Tras lo cual es necesario darle nuestras credenciales para ello utilizamos el comando ``` aws configure ```el cual nos pedirá nuestra Access Key ID y Secret Access Key las cuales las podemos obtener en la página  https://qwiklabs.com/dashboard a la que accedemos tras hacer log in en qwiklabs.
 
-![img](https://i.sli.mg/iqEXsz.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/2017-01-16-11-28-20_scrot2_zpsd9lsoxce.png)
 
 Tras esto consultamos la [pagina](https://github.com/mitchellh/vagrant-aws) de vagrant-aws y lo primero que hacemos es instalar el plugin vagrant-aws haciendo uso del comando ```vagrant plugin install vagrant-aws```.  Una vez realizado esto vemos como que necesitamos cuatro cosas:
 
@@ -342,7 +338,7 @@ Tras lo cual procedemos a abrir los puertos yo he utilizado la página web para 
 
 
  Nos vamos  al apartado security groups en aws.amazon.com y le damos  editar "Inbound " ponemos tipo ssh puerto 22  source 0.0.0.0/0 y ya tenemos todo lo necesario.
- ![img](https://i.sli.mg/MHSUzX.png)
+ ![img](http://i1339.photobucket.com/albums/o720/rand9882/2017-01-16-12-02-01_scrot_zpsju288mdv.png)
 
 
 #### 5.2.- Vagrantfile:
@@ -402,7 +398,7 @@ Donde :
 
 
 Con esto hecho ya es posible crear nuestra máquina virtual abriendo un shell en el directorio en el que se encuentra el Vagrantfile y ejecutar la orden vagrant up --provider=aws:
-![img](https://i.sli.mg/bZxs3U.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/2017-01-16-12-38-09_scrot_zpsvqw4gvwr.png)
 
 Notese el "fallo" al llegar a la parte en la que comienza a ejecutarse ansible esto se debe a que en el campo hosts de nuestro playbook queveobot.yml le hemos indicado un valor diferente a queveobot-aws. En la siguiente sección se muestra ya todo correcto y el lanzamiento de ansible ejecutando la orden vagrant provision.
 
@@ -411,7 +407,7 @@ Notese el "fallo" al llegar a la parte en la que comienza a ejecutarse ansible e
 
 En primer debido a un fallo muy feo:
 
-![img](https://i.sli.mg/Am26M4.jpg)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/photo_2017-01-16_18-45-18_zpspbqjizut.jpg)
 
 Creamos en el directorio en el que se encuentra el Vagrantfile un archivo llamado ansible.cfg y lo dejamos asi:
 
@@ -529,7 +525,7 @@ Para que rvm se instale para el usuario ubuntu. Procedo a explicar el las tareas
 
 Si se quiere una explicación más detallada de que hace exactamente cada modulo del .yml se puede ver el [ejercicio 2 del tema 6](https://github.com/LuisGi93/en-proceso/blob/master/IV/ejerciciosT6.md)
 
-![img](https://i.sli.mg/cpzadC.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/2017-01-13-09-15-19_scrot_zpsxafwesdp.png)
 
 #### 5.4.- Capistrano:
 
@@ -586,5 +582,5 @@ y parala con:
 cap production queveobot:daemon_stop
 ```
 
-![img](https://i.sli.mg/vdFxKk.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/2017-01-16-13-19-51_scrot2_zpstjxlkahx.png)
 
