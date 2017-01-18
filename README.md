@@ -124,7 +124,7 @@ Tras lo cual si se ha podido instalar todo correctamente ejecuta  Rake.A continu
 
 Travis por defecto cada vez que realizamos un commit a alguno de nuestros repositorios configurados ejecuta los tests y nos mostrará si los cambios en nuestro repositorio de github pasan los test que les hemos descrito:
 
-![img](hhttp://i1339.photobucket.com/albums/o720/rand9882/ss7_zpsljkfpyto.png)
+![img](http://i1339.photobucket.com/albums/o720/rand9882/ss7_zpsljkfpyto.png)
 
 
 
