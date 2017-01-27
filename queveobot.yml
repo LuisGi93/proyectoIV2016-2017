@@ -1,0 +1,63 @@
+---
+- hosts: queveobot-aws
+  user: ubuntu
+  sudo: yes    
+  roles:
+    - { role: rvm_io.ruby,
+        tags: ruby,
+        rvm1_rubies: ['ruby-2.3.1'],
+        rvm1_user: 'ubuntu',
+        becone: true
+      }
+      
+  tasks:       
+
+
+
+  -  name: Instalamos  paquetes necesarios
+     become: true
+     action: >
+      {{ ansible_pkg_mgr }} name={{ item }} state=installed update_cache=yes
+     with_items:
+      - build-essential
+      - ruby-dev
+      - libpq-dev
+      - ruby
+      - git
+      - libgdbm-dev
+      - libncurses5-dev
+      - automake
+      - libtool
+      - bison
+      - libffi-dev
+      
+
+  -  gem: 
+       name: bundler
+       state: latest
+
+  -  name: clonamos repo de la web
+     become: true  
+     become_user: ubuntu
+     shell: git clone https://github.com/LuisGi93/proyectoIV2016-2017.git
+     args:
+       creates: proyectoIV2016-2017
+       executable: /bin/bash
+
+  -  name: Instalamos el proyecto
+     become: true  
+     become_user: ubuntu
+     shell: source ~/.rvm/scripts/rvm && bundle install 
+     args:
+       chdir: proyectoIV2016-2017
+       executable: /bin/bash
+         
+  
+  -  name: Lo arrancamos
+     become: true  
+     become_user: ubuntu
+     shell: source ~/.rvm/scripts/rvm && export TOKEN="" && export ""  && export POSTGRES_DATABASE="" && ruby bin/run_as_daemon.rb start
+     args:
+       chdir: proyectoIV2016-2017
+       executable: /bin/bash
+  
